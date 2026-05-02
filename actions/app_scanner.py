@@ -9,6 +9,11 @@ COMMON_PATHS = [
     os.path.expanduser("~\\AppData\\Roaming"),
 ]
 
+START_MENU = [
+    "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs",
+    os.path.expanduser("~\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs"),
+]
+
 
 def scan_apps():
     apps = {}
@@ -25,6 +30,17 @@ def scan_apps():
             for file in files:
                 if file.endswith(".exe"):
                     name = file.replace(".exe", "").lower()
+                    path = os.path.join(root, file)
+                    apps[name] = path
+
+    for base in START_MENU:
+        if not os.path.exists(base):
+            continue
+
+        for root, _, files in os.walk(base):
+            for file in files:
+                if file.endswith(".lnk"):
+                    name = file.replace(".lnk", "").lower()
                     path = os.path.join(root, file)
                     apps[name] = path
 
