@@ -1,0 +1,31 @@
+{
+  "nodes": [
+    {
+      "file": "main.py",
+      "role": "entry point",
+      "description": "Handles input loop and dispatches commands"
+    },
+    {
+      "file": "brain/parser.py",
+      "role": "command parsing",
+      "description": "Converts text into structured intent"
+    },
+    {
+      "file": "actions/",
+      "role": "execution layer",
+      "description": "Contains modules to perform system actions"
+    }
+  ],
+  "edges": [
+    {
+      "from": "main.py",
+      "to": "brain/parser.py",
+      "type": "calls"
+    },
+    {
+      "from": "main.py",
+      "to": "actions/",
+      "type": "dispatches"
+    }
+  ]
+}
