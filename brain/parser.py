@@ -1,4 +1,4 @@
-# Smarter parser with normalization and aliases
+# Smarter parser with normalization, aliases, and flexible matching
 
 ALIASES = {
     "vs code": "vscode",
@@ -6,11 +6,11 @@ ALIASES = {
     "visual studio code": "vscode",
 }
 
-COMMANDS = {
-    "open vscode": ("open_app", {"app": "code"}),
-    "open chrome": ("open_app", {"app": "chrome"}),
-    "run": ("run_file", {}),
-    "type": ("type_text", {}),
+APPS = {
+    "vscode": "code",
+    "chrome": "chrome",
+    "whatsapp": "whatsapp",
+    "terminal": "cmd",
 }
 
 
@@ -26,9 +26,18 @@ def normalize(text: str) -> str:
 def parse(text: str) -> dict:
     text = normalize(text)
 
-    for trigger, (intent, params) in COMMANDS.items():
-        if text.startswith(trigger):
-            tail = text[len(trigger):].strip()
-            return {"intent": intent, "params": {**params, "arg": tail}}
+    # open command (flexible)
+    if text.startswith("open"):
+        for name, app in APPS.items():
+            if name in text:
+                return {"intent": "open_app", "params": {"app": app}}
+
+    # run command
+    if text.startswith("run"):
+        return {"intent": "run_file", "params": {"arg": text.replace("run", "").strip()}}
+
+    # type command
+    if text.startswith("type"):
+        return {"intent": "type_text", "params": {"arg": text.replace("type", "").strip()}}
 
     return {"intent": "unknown", "params": {}}
