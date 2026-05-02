@@ -3,29 +3,84 @@
     {
       "file": "main.py",
       "role": "entry point",
-      "description": "Handles input loop and dispatches commands"
+      "description": "Handles input loop, routing (parser first, LLM fallback), and dispatches commands"
     },
     {
       "file": "brain/parser.py",
       "role": "command parsing",
-      "description": "Converts text into structured intent with normalization"
+      "description": "Handles normalization, aliases, fuzzy matching, and extracts intent from text"
     },
     {
-      "file": "actions/",
-      "role": "execution layer",
-      "description": "Contains modules to perform system actions"
+      "file": "brain/llm_client.py",
+      "role": "ai reasoning",
+      "description": "Uses Ollama (Qwen) to convert natural language into structured JSON with fallback to parser"
+    },
+    {
+      "file": "actions/launcher.py",
+      "role": "app execution",
+      "description": "Opens applications using dynamic detection and fallback aliases"
+    },
+    {
+      "file": "actions/app_scanner.py",
+      "role": "app discovery",
+      "description": "Scans system directories to detect installed applications dynamically"
+    },
+    {
+      "file": "actions/runner.py",
+      "role": "code execution",
+      "description": "Runs Python files using subprocess"
+    },
+    {
+      "file": "actions/typer.py",
+      "role": "input automation",
+      "description": "Types text using pyautogui"
+    },
+    {
+      "file": "controller/confirm.py",
+      "role": "safety layer",
+      "description": "Confirms actions before execution"
+    },
+    {
+      "file": "voice/stt.py",
+      "role": "speech input",
+      "description": "Converts microphone input to text"
+    },
+    {
+      "file": "voice/tts.py",
+      "role": "speech output",
+      "description": "Converts text to speech"
     }
   ],
   "edges": [
     {
       "from": "main.py",
       "to": "brain/parser.py",
-      "type": "calls"
+      "type": "primary_parse"
     },
     {
       "from": "main.py",
-      "to": "actions/",
-      "type": "dispatches"
+      "to": "brain/llm_client.py",
+      "type": "fallback_ai"
+    },
+    {
+      "from": "main.py",
+      "to": "actions/launcher.py",
+      "type": "dispatch_open"
+    },
+    {
+      "from": "main.py",
+      "to": "actions/runner.py",
+      "type": "dispatch_run"
+    },
+    {
+      "from": "main.py",
+      "to": "actions/typer.py",
+      "type": "dispatch_type"
+    },
+    {
+      "from": "actions/launcher.py",
+      "to": "actions/app_scanner.py",
+      "type": "uses"
     }
   ]
 }
