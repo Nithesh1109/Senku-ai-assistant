@@ -5,6 +5,8 @@ import os
 COMMON_PATHS = [
     "C:\\Program Files",
     "C:\\Program Files (x86)",
+    os.path.expanduser("~\\AppData\\Local"),
+    os.path.expanduser("~\\AppData\\Roaming"),
 ]
 
 
