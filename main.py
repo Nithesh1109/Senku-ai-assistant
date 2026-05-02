@@ -1,6 +1,9 @@
 # Entry point for Senku AI Assistant
 
 from brain.parser import parse
+from brain.llm_router import needs_llm
+from brain.llm_client import query_llm
+
 from controller.confirm import confirm
 
 from actions.launcher import open_app
@@ -38,7 +41,12 @@ def main():
         else:
             text = input(">> ")
 
-        command = parse(text)
+        # routing logic
+        if needs_llm(text):
+            command = query_llm(text)
+        else:
+            command = parse(text)
+
         intent = command["intent"]
         params = command["params"]
 
