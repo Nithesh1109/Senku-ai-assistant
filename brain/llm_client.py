@@ -1,4 +1,4 @@
-# Real LLM client using Ollama with stricter prompt + fallback
+# Real LLM client using Ollama with fallback safety
 
 import requests
 import json
@@ -7,37 +7,27 @@ from brain.parser import parse
 OLLAMA_URL = "http://localhost:11434/api/generate"
 MODEL = "qwen2.5:1.5b"
 
-SYSTEM_PROMPT = """
-You are a command parser. Convert user commands into STRICT JSON.
-- Output ONLY valid JSON.
-- No explanations, no text outside JSON.
-- Use one of intents: open_app, run_file, type_text.
-- If app is VS Code, return app as 'code'.
-- Keep params minimal.
-"""
-
-
 def query_llm(text: str) -> dict:
     print("[LLM] Processing with Ollama...")
 
     prompt = f"""
-{SYSTEM_PROMPT}
+Convert this command into JSON.
 
 Command: "{text}"
 
-Return EXACT JSON like:
+Return ONLY JSON in this format:
 {{
-  "intent": "open_app|run_file|type_text",
+  "intent": "...",
   "params": {{
-    "app": "string (only if open_app)",
-    "arg": "string (only if needed)"
+    "app": "...",
+    "arg": "..."
   }}
 }}
 
 Examples:
-- open vscode -> {{"intent":"open_app","params":{"app":"code"}}}
-- run test.py -> {{"intent":"run_file","params":{"arg":"test.py"}}}
-- type hello -> {{"intent":"type_text","params":{"arg":"hello"}}}
+- "open vscode" → {{ "intent": "open_app", "params": {{ "app": "code" }} }}
+- "run test.py" → {{ "intent": "run_file", "params": {{ "arg": "test.py" }} }}
+- "type hello" → {{ "intent": "type_text", "params": {{ "arg": "hello" }} }}
 """
 
     try:
@@ -46,8 +36,7 @@ Examples:
             json={
                 "model": MODEL,
                 "prompt": prompt,
-                "stream": False,
-                "options": {"temperature": 0}
+                "stream": False
             }
         )
 
@@ -63,7 +52,7 @@ Examples:
         json_str = output[start:end]
         result = json.loads(json_str)
 
-        # Fallback safety
+        # fallback if LLM fails
         if result.get("intent") == "unknown":
             return parse(text)
 
