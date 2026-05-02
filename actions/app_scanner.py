@@ -15,7 +15,7 @@ def scan_apps():
         if not os.path.exists(base):
             continue
 
-        for root, dirs, files in os.walk(base):
+        for root, _, files in os.walk(base):
             for file in files:
                 if file.endswith(".exe"):
                     name = file.replace(".exe", "").lower()
