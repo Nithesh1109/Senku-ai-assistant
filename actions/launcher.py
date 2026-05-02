@@ -5,41 +5,33 @@ from actions.app_scanner import scan_apps
 
 APPS_CACHE = scan_apps()
 
-BLOCKED_PATHS = ["windowsapps"]
+BLOCKED_KEYWORDS = ["windowsapps", "pythonsoftwarefoundation"]
 
-# manual known apps (VERY IMPORTANT)
-SPECIAL_APPS = {
-    "whatsapp": "start shell:AppsFolder\\5319275A.WhatsAppDesktop_cv1g1gvanyjgm!App",
-    "calculator": "start calc",
-    "notepad": "start notepad",
-}
-
-def is_blocked(path: str):
-    return "windowsapps" in path.lower()
+def is_valid_exe(path: str):
+    path = path.lower()
+    return (
+        path.endswith(".exe")
+        and not any(b in path for b in BLOCKED_KEYWORDS)
+    )
 
 def open_app(app_name: str):
     app_name = app_name.lower().strip()
 
-    # 1. special apps (highest priority)
-    if app_name in SPECIAL_APPS:
-        subprocess.Popen(SPECIAL_APPS[app_name], shell=True)
-        return
-
-    # 2. dynamic exact match
+    # ✅ 1. SAFE exact match only
     if app_name in APPS_CACHE:
         path = APPS_CACHE[app_name]
-        if not is_blocked(path):
+        if is_valid_exe(path):
             subprocess.Popen(path)
             return
 
-    # 3. partial match
-    for name, path in APPS_CACHE.items():
-        if app_name in name and not is_blocked(path):
-            subprocess.Popen(path)
-            return
+    # ❌ REMOVE dangerous loose matching
+    # (this was causing your crashes)
 
-    # 4. fallback (generic)
+    # ✅ 2. Controlled fallback (Windows commands)
     try:
         subprocess.Popen(f"start {app_name}", shell=True)
-    except Exception as e:
-        print(f"Error opening app: {e}")
+        return
+    except Exception:
+        pass
+
+    print(f"App '{app_name}' not found")
