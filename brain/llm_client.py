@@ -1,13 +1,18 @@
-# Placeholder for LLM integration (Ollama later)
+# Temporary LLM client with smart fallback to parser
 
-# This will call local models like Qwen / Llama
+from brain.parser import parse
+
 
 def query_llm(text: str) -> dict:
-    # placeholder response
     print("[LLM] Processing complex command...")
 
-    # simulate structured output
-    return {
-        "intent": "unknown",
-        "params": {}
-    }
+    # TEMP: simulate intelligence by cleaning text
+    cleaned = text.lower()
+
+    for word in ["please", "can you", "could you", "would you"]:
+        cleaned = cleaned.replace(word, "")
+
+    cleaned = cleaned.strip()
+
+    # fallback to parser
+    return parse(cleaned)
