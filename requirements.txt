@@ -1,4 +1,4 @@
-pyautogui
+ pyautogui
 SpeechRecognition
 pyttsx3
 pyaudio
