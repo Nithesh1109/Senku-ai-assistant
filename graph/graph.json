@@ -8,7 +8,7 @@
     {
       "file": "brain/parser.py",
       "role": "command parsing",
-      "description": "Converts text into structured intent"
+      "description": "Converts text into structured intent with normalization"
     },
     {
       "file": "actions/",
