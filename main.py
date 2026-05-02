@@ -42,10 +42,10 @@ def main():
             text = input(">> ")
 
         # routing logic
-        if needs_llm(text):
+        command = parse(text)
+
+        if command["intent"] == "unknown":
             command = query_llm(text)
-        else:
-            command = parse(text)
 
         intent = command["intent"]
         params = command["params"]
