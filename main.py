@@ -68,7 +68,7 @@ def main():
             if intent == "open_app":
                 learn_app(text, params.get("app"))
 
-            speak("Done")
+            print(f"[Senku] Opened {params.get('app')}")
         else:
             print("Cancelled")
 

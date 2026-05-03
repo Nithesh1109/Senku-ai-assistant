@@ -4,6 +4,7 @@ import os
 import subprocess
 from pathlib import Path
 from brain.mapper import map_app_name
+from actions.app_cache import get_apps
 
 # ✅ Fast alias layer (fix broken apps)
 ALIASES = {
@@ -22,6 +23,8 @@ START_MENU_PATHS = [
     Path(os.environ["APPDATA"]) / "Microsoft/Windows/Start Menu/Programs",
     Path(os.environ["PROGRAMDATA"]) / "Microsoft/Windows/Start Menu/Programs",
 ]
+
+APPS_CACHE = get_apps()
 
 def find_in_start_menu(app_name: str):
     app_name = app_name.lower()

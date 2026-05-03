@@ -20,10 +20,24 @@ def save_memory(memory):
 
 def get_learned_app(query: str):
     memory = load_memory()
-    return memory.get(query.lower())
+    data = memory.get(query.lower())
+
+    if data:
+        return data["app"]
+
+    return None
 
 
 def learn_app(query: str, app: str):
     memory = load_memory()
-    memory[query.lower()] = app.lower()
+
+    query = query.lower()
+    app = app.lower()
+
+    if query not in memory:
+        memory[query] = {"app": app, "count": 1}
+    else:
+        memory[query]["count"] += 1
+        memory[query]["app"] = app
+
     save_memory(memory)
