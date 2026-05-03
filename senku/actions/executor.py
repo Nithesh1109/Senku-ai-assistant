@@ -6,9 +6,29 @@ def execute(actions):
     for act in actions:
         action = act.get("action")
 
+        # 🔥 OPEN APP WITH SMART FALLBACK
         if action == "open_app":
             app = act.get("app")
-            os.system(f"start {app}")
+
+            try:
+                result = os.system(f"start {app}")
+
+                if result != 0:
+                    raise Exception("App not found")
+
+                print(f"[Senku] Opened {app}")
+
+            except:
+                print(f"[Senku] {app} not found locally → opening in browser")
+
+                if app.lower() == "youtube":
+                    webbrowser.open("https://www.youtube.com")
+                elif app.lower() == "whatsapp":
+                    webbrowser.open("https://web.whatsapp.com")
+                elif app.lower() == "google":
+                    webbrowser.open("https://www.google.com")
+                else:
+                    webbrowser.open(f"https://www.google.com/search?q={app}")
 
         elif action == "close_app":
             app = act.get("app")
