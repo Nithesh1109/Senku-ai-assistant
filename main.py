@@ -4,6 +4,7 @@ from brain.parser import parse
 from brain.llm_router import needs_llm
 from brain.llm_client import query_llm
 from brain.memory import get_learned_app, learn_app
+from brain.context import get_last_app, set_last_app
 
 from controller.confirm import confirm
 
@@ -57,6 +58,16 @@ def main():
         intent = command["intent"]
         params = command["params"]
 
+        # Use context BEFORE execution
+        if command["intent"] == "open_app":
+            app = command["params"].get("app")
+
+            # if vague command → use context
+            if app in ["browser", "app", "something"]:
+                last = get_last_app()
+                if last:
+                    command["params"]["app"] = last
+
         if intent == "unknown":
             print("I didn't understand that.")
             continue
@@ -67,6 +78,7 @@ def main():
             # 🔥 learn mapping
             if intent == "open_app":
                 learn_app(text, params.get("app"))
+                set_last_app(params.get("app"))
 
             print(f"[Senku] Opened {params.get('app')}")
         else:
