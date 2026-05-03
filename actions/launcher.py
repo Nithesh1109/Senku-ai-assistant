@@ -12,6 +12,9 @@ ALIASES = {
     "calculator": "calc.exe",
     "notepad": "notepad.exe",
     "explorer": "explorer.exe",
+    "vscode": "code",
+    "adobe premiere pro": "premierepro",
+    "adobe photoshop": "photoshop",
 }
 
 # ✅ Start Menu paths
