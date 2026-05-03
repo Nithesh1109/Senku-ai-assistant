@@ -3,6 +3,7 @@
 import os
 import subprocess
 from pathlib import Path
+from brain.mapper import map_app_name
 
 # ✅ Fast alias layer (fix broken apps)
 ALIASES = {
@@ -33,7 +34,7 @@ def find_in_start_menu(app_name: str):
     return None
 
 def open_app(app_name: str):
-    app_name = app_name.lower().strip()
+    app_name = map_app_name(app_name)
 
     # 🔥 1. Alias (fast + reliable)
     if app_name in ALIASES:
