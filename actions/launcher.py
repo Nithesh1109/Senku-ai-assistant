@@ -1,33 +1,58 @@
-# Opens applications using subprocess (improved Windows handling)
+# Phase 1: Stable Windows launcher (no crashes)
 
+import os
 import subprocess
-from actions.app_scanner import scan_apps
+from pathlib import Path
 
-APPS_CACHE = scan_apps()
+# ✅ Fast alias layer (fix broken apps)
+ALIASES = {
+    "whatsapp": "shell:AppsFolder\\5319275A.WhatsAppDesktop_cv1g1gvanyjgm!App",
+    "settings": "ms-settings:",
+    "calculator": "calc.exe",
+    "notepad": "notepad.exe",
+    "explorer": "explorer.exe",
+}
 
-BLOCKED_KEYWORDS = ["windowsapps", "pythonsoftwarefoundation"]
+# ✅ Start Menu paths
+START_MENU_PATHS = [
+    Path(os.environ["APPDATA"]) / "Microsoft/Windows/Start Menu/Programs",
+    Path(os.environ["PROGRAMDATA"]) / "Microsoft/Windows/Start Menu/Programs",
+]
 
-def is_valid_exe(path: str):
-    path = path.lower()
-    return (
-        path.endswith(".exe")
-        and not any(b in path for b in BLOCKED_KEYWORDS)
-    )
+def find_in_start_menu(app_name: str):
+    app_name = app_name.lower()
+
+    for base in START_MENU_PATHS:
+        if not base.exists():
+            continue
+
+        for lnk in base.rglob("*.lnk"):
+            if app_name in lnk.stem.lower():
+                return str(lnk)
+
+    return None
 
 def open_app(app_name: str):
     app_name = app_name.lower().strip()
 
-    # ✅ 1. SAFE exact match only
-    if app_name in APPS_CACHE:
-        path = APPS_CACHE[app_name]
-        if is_valid_exe(path):
-            subprocess.Popen(path)
-            return
+    # 🔥 1. Alias (fast + reliable)
+    if app_name in ALIASES:
+        target = ALIASES[app_name]
 
-    # ❌ REMOVE dangerous loose matching
-    # (this was causing your crashes)
+        if target.startswith("shell:") or target.endswith(":"):
+            subprocess.Popen(f"start {target}", shell=True)
+        else:
+            os.startfile(target)
 
-    # ✅ 2. Controlled fallback (Windows commands)
+        return
+
+    # 🔥 2. Start Menu (.lnk)
+    lnk_path = find_in_start_menu(app_name)
+    if lnk_path:
+        os.startfile(lnk_path)
+        return
+
+    # 🔥 3. Fallback (basic Windows)
     try:
         subprocess.Popen(f"start {app_name}", shell=True)
         return
