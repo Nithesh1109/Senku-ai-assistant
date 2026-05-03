@@ -3,6 +3,7 @@
 from brain.parser import parse
 from brain.llm_router import needs_llm
 from brain.llm_client import query_llm
+from brain.memory import get_learned_app, learn_app
 
 from controller.confirm import confirm
 
@@ -44,6 +45,12 @@ def main():
         # routing logic
         command = parse(text)
 
+        # check memory before execution
+        learned = get_learned_app(text)
+        if learned:
+            command["intent"] = "open_app"
+            command["params"]["app"] = learned
+
         if command["intent"] == "unknown":
             command = query_llm(text)
 
@@ -56,6 +63,11 @@ def main():
 
         if confirm(intent, params):
             execute(intent, params)
+
+            # 🔥 learn mapping
+            if intent == "open_app":
+                learn_app(text, params.get("app"))
+
             speak("Done")
         else:
             print("Cancelled")
