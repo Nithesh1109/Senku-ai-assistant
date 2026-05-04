@@ -8,7 +8,9 @@ def execute(actions):
     for act in actions:
         action = act.get("action")
 
+        # 🔥 OPEN APP WITH SMART FALLBACK
         if action == "open_app":
+<<<<<<< HEAD
             raw_app = act.get("app")
             app = resolve_app(raw_app)
             smart_open_app(app)
@@ -22,6 +24,29 @@ def execute(actions):
                     alias_map[raw_app] = app
                     save_alias(alias_map)
                     print("[Senku] Learned new app mapping!")
+=======
+            app = act.get("app")
+
+            try:
+                result = os.system(f"start {app}")
+
+                if result != 0:
+                    raise Exception("App not found")
+
+                print(f"[Senku] Opened {app}")
+
+            except:
+                print(f"[Senku] {app} not found locally → opening in browser")
+
+                if app.lower() == "youtube":
+                    webbrowser.open("https://www.youtube.com")
+                elif app.lower() == "whatsapp":
+                    webbrowser.open("https://web.whatsapp.com")
+                elif app.lower() == "google":
+                    webbrowser.open("https://www.google.com")
+                else:
+                    webbrowser.open(f"https://www.google.com/search?q={app}")
+>>>>>>> 4071a74d2e291b02dff9a0541f6dcb91ab37a4da
 
         elif action == "close_app":
             app = act.get("app")
