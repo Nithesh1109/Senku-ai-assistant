@@ -1,5 +1,7 @@
 import os
 import webbrowser
+from actions.launcher import open_app as smart_open_app
+from actions.resolver import resolve_app, save_alias, load_alias
 
 
 def execute(actions):
@@ -7,8 +9,19 @@ def execute(actions):
         action = act.get("action")
 
         if action == "open_app":
-            app = act.get("app")
-            os.system(f"start {app}")
+            raw_app = act.get("app")
+            app = resolve_app(raw_app)
+            smart_open_app(app)
+
+            # 🔥 Ask user once and learn
+            if raw_app != app and raw_app not in load_alias():
+                user_input = input(f"Should I remember '{raw_app}' as '{app}'? (y/n): ")
+
+                if user_input.lower() == "y":
+                    alias_map = load_alias()
+                    alias_map[raw_app] = app
+                    save_alias(alias_map)
+                    print("[Senku] Learned new app mapping!")
 
         elif action == "close_app":
             app = act.get("app")

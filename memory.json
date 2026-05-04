@@ -1,3 +1,23 @@
 {
-  "open my editor": "editor"
+  "open my editor": "editor",
+  "open browser": {
+    "app": "chrome",
+    "count": 1
+  },
+  "open chrome": {
+    "app": "chrome",
+    "count": 2
+  },
+  "open jp chrome": {
+    "app": "chrome",
+    "count": 6
+  },
+  "\"open jp chrome\"": {
+    "app": "chrome",
+    "count": 3
+  },
+  "open whatsapp": {
+    "app": "whatsapp",
+    "count": 1
+  }
 }
