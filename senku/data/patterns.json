@@ -1,0 +1,133 @@
+{
+  "patterns": {
+    "open chrome::open_app": {
+      "input": "open chrome",
+      "action_type": "open_app",
+      "params": {
+        "app": "chrome"
+      },
+      "success_count": 15,
+      "fail_count": 0,
+      "last_used": "2026-05-04T23:13:52.907919",
+      "total_duration_ms": 4500
+    },
+    "open whatsapp::open_app": {
+      "input": "open whatsapp",
+      "action_type": "open_app",
+      "params": {
+        "app": "whatsapp"
+      },
+      "success_count": 1,
+      "fail_count": 0,
+      "last_used": "2026-05-04T22:15:00.213220",
+      "total_duration_ms": 445.0869560241699
+    },
+    "vj sidu vlogs::play_youtube": {
+      "input": "vj sidu vlogs",
+      "action_type": "play_youtube",
+      "params": {
+        "query": "vj sidu vlogs"
+      },
+      "success_count": 1,
+      "fail_count": 0,
+      "last_used": "2026-05-04T22:15:29.818483",
+      "total_duration_ms": 105.32116889953613
+    },
+    "open vs code::open_app": {
+      "input": "open vs code",
+      "action_type": "open_app",
+      "params": {
+        "app": "vscode"
+      },
+      "success_count": 1,
+      "fail_count": 0,
+      "last_used": "2026-05-04T22:16:07.947284",
+      "total_duration_ms": 16.528606414794922
+    },
+    "close chrome::close_app": {
+      "input": "close chrome",
+      "action_type": "close_app",
+      "params": {
+        "app": "chrome"
+      },
+      "success_count": 1,
+      "fail_count": 0,
+      "last_used": "2026-05-04T22:17:13.437382",
+      "total_duration_ms": 530.602216720581
+    },
+    "open chrome and chatgpt::open_app": {
+      "input": "open chrome and chatgpt",
+      "action_type": "open_app",
+      "params": {
+        "app": "chrome and chatgpt"
+      },
+      "success_count": 1,
+      "fail_count": 0,
+      "last_used": "2026-05-04T22:17:26.353632",
+      "total_duration_ms": 12.206077575683594
+    },
+    "close armoury crate::close_app": {
+      "input": "close armoury crate",
+      "action_type": "close_app",
+      "params": {
+        "app": "armoury crate"
+      },
+      "success_count": 0,
+      "fail_count": 1,
+      "last_used": "2026-05-04T22:18:16.572979",
+      "total_duration_ms": 267.51089096069336
+    },
+    "open whatsapp and show me::open_app": {
+      "input": "open whatsapp and show me",
+      "action_type": "open_app",
+      "params": {
+        "app": "whatsapp and show me"
+      },
+      "success_count": 1,
+      "fail_count": 0,
+      "last_used": "2026-05-04T22:55:54.511340",
+      "total_duration_ms": 4591.756820678711
+    },
+    "open whatsapp and show me the message u sent::open_app": {
+      "input": "open whatsapp and show me the message u sent",
+      "action_type": "open_app",
+      "params": {
+        "app": "whatsapp and show me the message u sent"
+      },
+      "success_count": 1,
+      "fail_count": 0,
+      "last_used": "2026-05-04T22:56:15.932790",
+      "total_duration_ms": 3600.0418663024902
+    },
+    "open again::open_app": {
+      "input": "open again",
+      "action_type": "open_app",
+      "params": {
+        "app": "again"
+      },
+      "success_count": 1,
+      "fail_count": 0,
+      "last_used": "2026-05-04T22:58:53.594536",
+      "total_duration_ms": 5026.541233062744
+    },
+    "a good tamil song::play_youtube": {
+      "input": "a good tamil song",
+      "action_type": "play_youtube",
+      "params": {
+        "query": "a good tamil song"
+      },
+      "success_count": 1,
+      "fail_count": 0,
+      "last_used": "2026-05-04T22:59:52.997451",
+      "total_duration_ms": 292.06180572509766
+    }
+  },
+  "vocab": {
+    "my browser": "chrome"
+  },
+  "command_frequency": {
+    "open_app": 21,
+    "play_youtube": 2,
+    "close_app": 2
+  }
+}

@@ -1,0 +1,118 @@
+[
+  {
+    "action_type": "open_app",
+    "score": {
+      "success_score": 1.0,
+      "speed_score": 1.0,
+      "reliability_score": 1.0,
+      "overall": 1.0,
+      "suggestions": []
+    },
+    "timestamp": "2026-05-04T22:15:00.215671"
+  },
+  {
+    "action_type": "play_youtube",
+    "score": {
+      "success_score": 1.0,
+      "speed_score": 1.0,
+      "reliability_score": 1.0,
+      "overall": 1.0,
+      "suggestions": []
+    },
+    "timestamp": "2026-05-04T22:15:29.819564"
+  },
+  {
+    "action_type": "open_app",
+    "score": {
+      "success_score": 1.0,
+      "speed_score": 1.0,
+      "reliability_score": 1.0,
+      "overall": 1.0,
+      "suggestions": []
+    },
+    "timestamp": "2026-05-04T22:16:07.950337"
+  },
+  {
+    "action_type": "close_app",
+    "score": {
+      "success_score": 1.0,
+      "speed_score": 0.942,
+      "reliability_score": 1.0,
+      "overall": 0.988,
+      "suggestions": []
+    },
+    "timestamp": "2026-05-04T22:17:13.440696"
+  },
+  {
+    "action_type": "open_app",
+    "score": {
+      "success_score": 1.0,
+      "speed_score": 1.0,
+      "reliability_score": 1.0,
+      "overall": 1.0,
+      "suggestions": []
+    },
+    "timestamp": "2026-05-04T22:17:26.357842"
+  },
+  {
+    "action_type": "close_app",
+    "score": {
+      "success_score": 0.0,
+      "speed_score": 1.0,
+      "reliability_score": 0.5,
+      "overall": 0.35,
+      "suggestions": []
+    },
+    "timestamp": "2026-05-04T22:18:16.574040"
+  },
+  {
+    "action_type": "open_app",
+    "score": {
+      "success_score": 1.0,
+      "speed_score": 0.174,
+      "reliability_score": 1.0,
+      "overall": 0.835,
+      "suggestions": [
+        "'open_app' is slow (4592ms vs 800ms baseline)"
+      ]
+    },
+    "timestamp": "2026-05-04T22:55:54.515016"
+  },
+  {
+    "action_type": "open_app",
+    "score": {
+      "success_score": 1.0,
+      "speed_score": 0.222,
+      "reliability_score": 1.0,
+      "overall": 0.844,
+      "suggestions": [
+        "'open_app' is slow (3600ms vs 800ms baseline)"
+      ]
+    },
+    "timestamp": "2026-05-04T22:56:15.935407"
+  },
+  {
+    "action_type": "open_app",
+    "score": {
+      "success_score": 1.0,
+      "speed_score": 0.159,
+      "reliability_score": 1.0,
+      "overall": 0.832,
+      "suggestions": [
+        "'open_app' is slow (5027ms vs 800ms baseline)"
+      ]
+    },
+    "timestamp": "2026-05-04T22:58:53.597824"
+  },
+  {
+    "action_type": "play_youtube",
+    "score": {
+      "success_score": 1.0,
+      "speed_score": 1.0,
+      "reliability_score": 1.0,
+      "overall": 1.0,
+      "suggestions": []
+    },
+    "timestamp": "2026-05-04T22:59:53.000431"
+  }
+]

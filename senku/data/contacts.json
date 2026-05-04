@@ -1,0 +1,6 @@
+{
+    "_help": "Map contact names to phone numbers (with country code, no +). Senku uses this to resolve names like 'amma' to phone numbers for WhatsApp.",
+    "amma": "",
+    "dad": "",
+    "example": "919876543210"
+}

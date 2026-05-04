@@ -1,0 +1,112 @@
+[
+  {
+    "action_type": "open_app",
+    "params": {
+      "app": "whatsapp"
+    },
+    "status": "success",
+    "message": "Opened whatsapp",
+    "error": null,
+    "duration_ms": 445.0869560241699,
+    "timestamp": "2026-05-04T22:15:00.206163"
+  },
+  {
+    "action_type": "play_youtube",
+    "params": {
+      "query": "vj sidu vlogs"
+    },
+    "status": "success",
+    "message": "Playing on YouTube: vj sidu vlogs",
+    "error": null,
+    "duration_ms": 105.32116889953613,
+    "timestamp": "2026-05-04T22:15:29.815560"
+  },
+  {
+    "action_type": "open_app",
+    "params": {
+      "app": "vscode"
+    },
+    "status": "success",
+    "message": "Opened vscode",
+    "error": null,
+    "duration_ms": 16.528606414794922,
+    "timestamp": "2026-05-04T22:16:07.941615"
+  },
+  {
+    "action_type": "close_app",
+    "params": {
+      "app": "chrome"
+    },
+    "status": "success",
+    "message": "Closed chrome",
+    "error": null,
+    "duration_ms": 530.602216720581,
+    "timestamp": "2026-05-04T22:17:13.430073"
+  },
+  {
+    "action_type": "open_app",
+    "params": {
+      "app": "chrome and chatgpt"
+    },
+    "status": "success",
+    "message": "Opened chrome and chatgpt",
+    "error": null,
+    "duration_ms": 12.206077575683594,
+    "timestamp": "2026-05-04T22:17:26.347934"
+  },
+  {
+    "action_type": "close_app",
+    "params": {
+      "app": "armoury crate"
+    },
+    "status": "failed",
+    "message": "Could not close armoury crate — it may not be running",
+    "error": "taskkill returned code 128",
+    "duration_ms": 267.51089096069336,
+    "timestamp": "2026-05-04T22:18:16.571649"
+  },
+  {
+    "action_type": "open_app",
+    "params": {
+      "app": "whatsapp and show me"
+    },
+    "status": "success",
+    "message": "Opened whatsapp and show me",
+    "error": null,
+    "duration_ms": 4591.756820678711,
+    "timestamp": "2026-05-04T22:55:54.504332"
+  },
+  {
+    "action_type": "open_app",
+    "params": {
+      "app": "whatsapp and show me the message u sent"
+    },
+    "status": "success",
+    "message": "Opened whatsapp and show me the message u sent",
+    "error": null,
+    "duration_ms": 3600.0418663024902,
+    "timestamp": "2026-05-04T22:56:15.927567"
+  },
+  {
+    "action_type": "open_app",
+    "params": {
+      "app": "again"
+    },
+    "status": "success",
+    "message": "Opened again",
+    "error": null,
+    "duration_ms": 5026.541233062744,
+    "timestamp": "2026-05-04T22:58:53.587753"
+  },
+  {
+    "action_type": "play_youtube",
+    "params": {
+      "query": "a good tamil song"
+    },
+    "status": "success",
+    "message": "Playing on YouTube: a good tamil song",
+    "error": null,
+    "duration_ms": 292.06180572509766,
+    "timestamp": "2026-05-04T22:59:52.990624"
+  }
+]
